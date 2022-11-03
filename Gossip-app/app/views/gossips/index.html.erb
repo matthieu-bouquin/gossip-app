@@ -1,0 +1,27 @@
+<!-- Alerts / Flash messages -->
+<br/><br/><br/>
+<% flash.each do |key, msg| %>
+  <div class="alert alert-<%=key%> text-center" role="alert">
+    <%= msg %>
+  </div>
+<% end %>
+<br/><br/><br/>
+<h4> Le flot de ragots </h4>
+
+<div class="container-fluid d-flex flex-wrap justify-content-center row xy-3 ">
+<% @gossips.each_with_index do |gossip, index| %>
+  <div class="card border-primary mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%=gossip.title%></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%=gossip.user.first_name%></h6>
+    <p class="card-text"><%=gossip.content%></p>
+    <small>Nombre de commentaires : <%= gossip.comments.count %></small><br/>
+    <small>Nombre de likes : <%=gossip.likes.count%></small><br/>
+    <a class="btn btn-outline-primary btn-sm" role="button" href="<%= gossip_path(gossip.id) %>">Voir le détail</a>
+  </div>
+</div>
+  
+  <br/>
+<% end %>
+</div>
+<br/><br/><br/><br/>
